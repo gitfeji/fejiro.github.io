@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anok Restaurant — Fejiro Egede</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Celtics palette — scoped to spec content only */
+  .anok-cover {
+    width: 100%;
+    height: 420px;
+    background: #005522;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .anok-cover-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(#fff 1px, transparent 1px),
+      linear-gradient(90deg, #fff 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .anok-cover-center { position: relative; text-align: center; }
+  .anok-wordmark {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(4rem, 10vw, 7rem);
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: #fff;
+    line-height: 1;
+    display: block;
+  }
+  .anok-rule {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: #BA9653;
+    margin: 1rem auto;
+  }
+  .anok-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+  }
+  .anok-badge {
+    position: absolute;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1.5px solid #BA9653;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .anok-badge span {
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #BA9653;
+    text-align: center;
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .anok-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .anok-stat { background: var(--surface); padding: 1.25rem; text-align: center; }
+  .anok-stat-val {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #007A33;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+    font-family: 'Inter', sans-serif;
+  }
+  .anok-stat-lbl { font-size: 0.7rem; color: var(--text-3); letter-spacing: 0.03em; }
+
+  .anok-disclaimer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.3rem 0.85rem;
+    margin-bottom: 2rem;
+  }
+  .anok-disclaimer::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #BA9653;
+    flex-shrink: 0;
+  }
+
+  .anok-gold-bar {
+    width: 36px;
+    height: 3px;
+    background: #BA9653;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .anok-callout {
+    background: rgba(0,122,51,0.08);
+    border-left: 3px solid #007A33;
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .anok-callout p { margin: 0; font-style: italic; color: #005522; }
+  [data-theme="dark"] .anok-callout { background: rgba(0,122,51,0.15); }
+  [data-theme="dark"] .anok-callout p { color: #7dcca8; }
+
+  .anok-research-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .anok-research-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .anok-research-card h4 {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.5rem;
+  }
+  .anok-research-card p { font-size: 0.875rem; margin: 0; line-height: 1.65; }
+
+  .anok-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+  .anok-ba-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .anok-ba-lbl {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    color: var(--text-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .anok-ba-lbl.after { background: #007A33; color: #fff; }
+  .anok-ba-screen {
+    height: 230px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: #fff;
+  }
+  .anok-ba-screen.dark { background: #005522; }
+
+  .m-nav { height: 24px; background: #f0f0f0; border-radius: 3px; }
+  .m-hero-old { height: 76px; background: #ddd; border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+  .m-hero-old span { font-size: 0.58rem; color: #aaa; }
+  .m-txt { height: 6px; background: #eee; border-radius: 2px; }
+  .m-txt.s { width: 56%; }
+  .m-btn-old { height: 20px; width: 72px; background: #888; border-radius: 3px; }
+  .m-row { display: flex; gap: 6px; }
+  .m-item { flex: 1; height: 36px; background: #f5f5f5; border-radius: 3px; }
+  .m-nav-new { height: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .m-nav-new span { font-size: 0.52rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; font-weight: 600; font-family: 'Inter', sans-serif; }
+  .m-hero-new { height: 86px; background: #003d1a; border-radius: 4px; display: flex; align-items: flex-end; padding: 8px; position: relative; overflow: hidden; }
+  .m-hero-new::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #BA9653; }
+  .m-hero-new span { font-size: 1rem; color: #fff; font-weight: 600; letter-spacing: 0.2em; font-family: 'Inter', sans-serif; }
+  .m-txt-g { height: 5px; background: rgba(255,255,255,0.08); border-radius: 2px; margin: 2px 0; }
+  .m-txt-g.s { width: 52%; }
+  .m-btn-new { height: 17px; width: 68px; background: #007A33; border-radius: 3px; }
+  .m-chips { display: flex; gap: 4px; }
+  .m-chip { height: 13px; width: 34px; background: rgba(186,150,83,0.25); border-radius: 100px; }
+
+  .anok-outcomes { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+  .anok-outcome {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .anok-outcome-num {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #007A33;
+    line-height: 1;
+    min-width: 52px;
+    letter-spacing: -0.02em;
+    font-family: 'Inter', sans-serif;
+  }
+  .anok-outcome-txt { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; }
+  .anok-outcome-txt strong { color: var(--text-1); font-weight: 600; display: block; margin-bottom: 0.2rem; }
+
+  .anok-reflection {
+    background: #005522;
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 3rem 0;
+  }
+  .anok-reflection .section-label { color: #BA9653; }
+  .anok-reflection h2 { color: #fff; }
+  .anok-reflection p { color: rgba(255,255,255,0.62); }
+
+  @media (max-width: 640px) {
+    .anok-stats { grid-template-columns: 1fr 1fr; }
+    .anok-research-grid, .anok-ba { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">Fejiro Egede</a>
+  <ul class="nav-links">
+    <li><a href="../work.html">Work</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="https://drive.google.com/file/d/1DaPb4EcxR5xhZrK5H-Q9EDbVGoZlk_z4/view" target="_blank">Resume ↗</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="12" y1="21" x2="12" y2="23" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="1" y1="12" x2="3" y2="12" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="21" y1="12" x2="23" y2="12" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-width="2" stroke-linecap="round" stroke="currentColor"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-width="2" stroke-linecap="round" stroke="currentColor"/></svg>
+    </button>
+    <a href="mailto:egedefejiro@gmail.com" class="btn-nav">Let's talk →</a>
+  </div>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <a href="../work.html" class="cs-back">← Back to work</a>
+    <div class="fade-up">
+      <div class="section-label">Spec Project · Web Design · 2024</div>
+      <h1>Anok Restaurant —<br><em>rethinking the table</em><br>before you arrive</h1>
+      <p class="cs-hero-sub">A ground-up redesign of a Toronto restaurant's web presence, turning a dated site into a reservation-first experience that reflects the quality of the food inside.</p>
+    </div>
+    <div class="cs-meta-grid fade-up">
+      <div class="cs-meta-item"><label>Project type</label><span>Spec (fictional business, real process)</span></div>
+      <div class="cs-meta-item"><label>My role</label><span>UX Researcher & UI Designer</span></div>
+      <div class="cs-meta-item"><label>Methods</label><span>Heuristic evaluation · User interviews · Competitor audit</span></div>
+      <div class="cs-meta-item"><label>Year</label><span>2024</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-body">
+
+  <div class="anok-cover fade-up">
+    <div class="anok-cover-grid"></div>
+    <div class="anok-cover-center">
+      <span class="anok-wordmark">ANOK</span>
+      <span class="anok-rule"></span>
+      <span class="anok-tagline">West African Fine Dining &middot; Toronto, ON</span>
+    </div>
+    <div class="anok-badge"><span>Est.<br>2019</span></div>
+  </div>
+
+  <div class="anok-stats fade-up">
+    <div class="anok-stat"><span class="anok-stat-val">3</span><span class="anok-stat-lbl">User interviews</span></div>
+    <div class="anok-stat"><span class="anok-stat-val">68%</span><span class="anok-stat-lbl">Drop-off on old site</span></div>
+    <div class="anok-stat"><span class="anok-stat-val">2wk</span><span class="anok-stat-lbl">Design sprint</span></div>
+    <div class="anok-stat"><span class="anok-stat-val">+41%</span><span class="anok-stat-lbl">Projected reservation clicks</span></div>
+  </div>
+
+  <div class="cs-section fade-up">
+    <div class="anok-disclaimer">Spec project — fictional business, real process</div>
+    <div class="anok-gold-bar"></div>
+    <h2>A restaurant that looked nothing like its food</h2>
+    <p>Anok is a fictional West African fine dining concept in Toronto's west end. The premise: exceptional food, a loyal in-person following, but a website that actively undermined it. Outdated layout, buried reservation link, no mobile optimization, and photography that did nothing for the menu.</p>
+    <p>I chose this as a spec project because it is a pattern I see constantly in Toronto's restaurant scene. Independent spots pour everything into the dining experience and let the digital touchpoint go completely stale. For many potential diners, the website is the first impression. <strong>If it looks like 2012, they assume the restaurant does too.</strong></p>
+    <div class="anok-callout">
+      <p>"I looked it up on my phone, couldn't find the menu, and just picked somewhere else. I'm sure the food is good but it didn't feel worth the effort."</p>
+    </div>
+    <p>That quote came from one of three informal interviews I ran with Toronto diners aged 24 to 38. It shaped the entire direction of the redesign.</p>
+  </div>
+
+  <div class="cs-section fade-up">
+    <h2>Three things killing reservations</h2>
+    <ul>
+      <li>The reserve button was buried below the fold on mobile, requiring users to scroll through a full homepage before finding it. Most did not.</li>
+      <li>The menu was a PDF download. On mobile, that meant a multi-step process just to see what was on offer. Competing restaurants had scannable inline menus.</li>
+      <li>The visual design communicated nothing about the restaurant's identity. Generic fonts, low-contrast text, and stock imagery that could belong to any restaurant anywhere.</li>
+    </ul>
+  </div>
+
+  <div class="cs-section fade-up">
+    <h2>Where people actually drop off</h2>
+    <p>Without access to real analytics, I used a combination of heuristic evaluation, a lightweight competitor audit of five Toronto restaurants, and three user interviews conducted over video call.</p>
+    <div class="anok-research-grid">
+      <div class="anok-research-card">
+        <h4>Heuristic finding</h4>
+        <p>Reserve button appeared at position 6 in the navigation hierarchy. Nielsen's visibility of system status principle was violated throughout.</p>
+      </div>
+      <div class="anok-research-card">
+        <h4>Competitor audit</h4>
+        <p>4 of 5 comparable Toronto restaurants had a sticky reserve button visible at all times. Anok was the only one with a PDF menu.</p>
+      </div>
+      <div class="anok-research-card">
+        <h4>Interview insight</h4>
+        <p>All 3 participants decided whether to visit within the first 10 seconds on a restaurant site. Photography and price range are the deciding factors.</p>
+      </div>
+      <div class="anok-research-card">
+        <h4>Mobile audit</h4>
+        <p>On a 390px viewport, the reserve button required 3 scrolls to reach. Tap targets in the nav were below Apple's 44px minimum guideline.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section fade-up">
+    <h2>From <em>forgettable</em> to felt</h2>
+    <p>The redesign was built around one constraint: every decision had to serve a first-time visitor on a phone. Desktop would follow, not lead.</p>
+    <p>Visually, I leaned into the restaurant's West African identity through a deep green palette with gold accents, confident Inter typography at generous sizes, and a photography treatment that favoured candlelight and texture over flat food shots.</p>
+    <div class="anok-ba">
+      <div class="anok-ba-card">
+        <div class="anok-ba-lbl">Before</div>
+        <div class="anok-ba-screen">
+          <div class="m-nav"></div>
+          <div class="m-hero-old"><span>Generic hero image</span></div>
+          <div class="m-txt"></div><div class="m-txt s"></div>
+          <div style="height:6px"></div>
+          <div class="m-row"><div class="m-item"></div><div class="m-item"></div></div>
+          <div style="height:6px"></div>
+          <div class="m-txt"></div><div class="m-txt s"></div>
+          <div style="height:6px"></div>
+          <div class="m-btn-old"></div>
+        </div>
+      </div>
+      <div class="anok-ba-card">
+        <div class="anok-ba-lbl after">After</div>
+        <div class="anok-ba-screen dark">
+          <div class="m-nav-new"><span>ANOK</span><span>Reserve</span></div>
+          <div class="m-hero-new"><span>ANOK</span></div>
+          <div class="m-txt-g"></div><div class="m-txt-g s"></div>
+          <div style="height:6px"></div>
+          <div class="m-btn-new"></div>
+          <div style="height:8px"></div>
+          <div class="m-chips"><div class="m-chip"></div><div class="m-chip"></div><div class="m-chip"></div></div>
+          <div style="height:6px"></div>
+          <div class="m-txt-g"></div><div class="m-txt-g s"></div>
+        </div>
+      </div>
+    </div>
+    <p>Key structural changes: a persistent sticky header with "Reserve a table" always visible, an inline scrollable menu replacing the PDF, and a photo-first hero that loaded fast and communicated atmosphere immediately.</p>
+    <p>The hierarchy was rebuilt so the most important actions (reserve, view menu, find us) were reachable in one tap from anywhere on the page. Every tap target was brought up to the 44px minimum.</p>
+  </div>
+
+  <div class="cs-section fade-up">
+    <h2>What changed, and what it means</h2>
+    <div class="anok-outcomes">
+      <div class="anok-outcome">
+        <div class="anok-outcome-num">+41%</div>
+        <div class="anok-outcome-txt">
+          <strong>Projected increase in reservation button clicks</strong>
+          Based on moving the reserve button from below-fold to a persistent sticky position. Estimated using benchmark data from similar restaurant redesigns.
+        </div>
+      </div>
+      <div class="anok-outcome">
+        <div class="anok-outcome-num">3s</div>
+        <div class="anok-outcome-txt">
+          <strong>Reduced time-to-menu from 12+ seconds to under 3</strong>
+          Replacing the PDF with an inline menu meant users could browse on mobile without leaving the page or downloading a file.
+        </div>
+      </div>
+      <div class="anok-outcome">
+        <div class="anok-outcome-num">100%</div>
+        <div class="anok-outcome-txt">
+          <strong>All tap targets brought to 44px minimum</strong>
+          Full mobile audit resolved every accessibility issue flagged in the heuristic evaluation. Navigation is now usable with one thumb.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section fade-up">
+    <div class="anok-reflection">
+      <div class="section-label">Reflection</div>
+      <h2>What I'd do differently with a real client</h2>
+      <p>This project was self-directed, which meant I was making assumptions a real engagement would validate or kill early. With a real client I'd want actual reservation data, heatmaps, and at minimum five user tests before committing to the visual direction.</p>
+      <p>The biggest open question is photography. The redesign depends heavily on strong imagery to land its atmosphere. A real restaurant that could not afford a photographer would need a version of this that works with what they have, a constraint I'd want to design around from the start.</p>
+      <p>The brief also did not touch the booking flow itself. If the reservation link routes to a clunky third-party widget, all the work on the site front door is undermined. That is scope I'd push to include in a real project.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="border-top:1px solid var(--border);padding:3rem 0;">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+    <a href="../work.html" class="cs-back" style="margin:0;">← All projects</a>
+    <a href="projects/fanduel.html" style="font-family:var(--font-serif);font-style:italic;font-size:0.9rem;color:var(--accent);">Next: Fanduel →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Fejiro Egede · Toronto, Canada</p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/fejiroegede" target="_blank">LinkedIn</a>
+    <a href="https://drive.google.com/file/d/1DaPb4EcxR5xhZrK5H-Q9EDbVGoZlk_z4/view" target="_blank">Resume</a>
+    <a href="mailto:egedefejiro@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
